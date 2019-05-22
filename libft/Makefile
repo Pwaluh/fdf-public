@@ -10,7 +10,7 @@ SRC_FILE = ft_memset ft_memcpy ft_bzero ft_memccpy ft_memmove ft_memchr \
 		   ft_putstr ft_putendl ft_putchar_fd ft_putstr_fd ft_putendl_fd \
 		   ft_strsplit ft_putnbr ft_putnbr_fd ft_utf8_encode ft_print_byte \
 		   ft_lstnew ft_lstdelone ft_lstdel ft_lstadd ft_lstiter ft_lstmap \
-		   ft_utf8_decode
+		   ft_utf8_decode memswap
 SRCS = $(addsuffix .c, $(SRC_FILE))
 OBJ = $(SRCS:.c=.o)
 OBJS = $(SRCS:%.c=%.o)
