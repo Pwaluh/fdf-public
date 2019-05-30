@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 15:32:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/05/22 20:47:41 by judrion          ###   ########.fr       */
+/*   Updated: 2019/05/28 17:19:09 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,11 @@ static t_vector3d	*init_points(t_file *map, int i)
 	if (p[0].y < map->line_nb - 1)
 	{
 		p[2].x = p[0].x;
-		p[2].y = p[0].y + 20;
+		p[2].y = p[0].y + 1;
 		p[2].z = map->data[(p[2].y * map->line_size) + p[2].x];
 	}
 	else
 		p[2] = p[0];
-	printf("p[0] - [%d:%d:%d]\t", p[0].x, p[0].y, p[0].z);
-	printf("p[1] - [%d:%d:%d]\t", p[1].x, p[1].y, p[1].z);
-	printf("p[2] - [%d:%d:%d]\n", p[2].x, p[2].y, p[2].z);
 	return (p);
 }
 
@@ -65,6 +62,9 @@ void				render(t_file *map, t_mlx *mlx)
 	while (i < map->line_size * map->line_nb)
 	{
 		p = init_points(map, i);
+		printf("p[0] - [%d:%d:%d]\t\t", p[0].x, p[0].y, p[0].z);
+		printf("p[1] - [%d:%d:%d]\t\t", p[1].x, p[1].y, p[1].z);
+		printf("p[2] - [%d:%d:%d]\n", p[2].x, p[2].y, p[2].z);
 		draw_lines(p, mlx);
 		ft_memdel((void**)&p);
 		i = i + 1;

@@ -6,11 +6,12 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:30 by judrion           #+#    #+#             */
-/*   Updated: 2019/05/22 20:30:55 by judrion          ###   ########.fr       */
+/*   Updated: 2019/05/28 17:17:24 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "keycode.h"
 
 t_mlx			*init_mlx(void)
 {
@@ -38,7 +39,7 @@ int				main(int argc, char **argv)
 		throw_error(MAP_ERROR);
 	render(map, mlx);
 //	free_data(mlx, map);
-//	mlx_hook(master->mlx->win_ptr, KEYPRESS, KPMASK, &key_hook_fct, master);
+	mlx_hook(mlx->win, KEYPRESS, KPMASK, &key_hook, mlx);
 	mlx_loop(mlx->ptr);
 	return (0);
 }

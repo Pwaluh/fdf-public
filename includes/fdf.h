@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/05/22 20:29:32 by judrion          ###   ########.fr       */
+/*   Updated: 2019/05/28 17:07:19 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct				s_bresenham
 }							t_bresenham;
 
 
+int					key_hook(int keycode, t_mlx *mlx);
 void				free_data(t_mlx *mlx, t_file *map);
 void				throw_error(int error_code);
 t_file				*load_file(const char *file);
