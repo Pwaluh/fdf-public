@@ -6,11 +6,12 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 16:56:39 by judrion           #+#    #+#             */
-/*   Updated: 2019/05/22 20:51:17 by judrion          ###   ########.fr       */
+/*   Updated: 2019/05/31 15:40:30 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
 
 void				draw_lines(t_vector3d *p, t_mlx *mlx)
 {
@@ -49,11 +50,15 @@ void				bresenham_line(t_vector3d p0, t_vector3d p1, t_mlx *mlx)
 	t_vector3d			coord;
 
 	data_line = init_data_line(&p0, &p1);
+	printf("[%d:%d] - [%d:%d]\n", p0.x, p0.y, p1.x, p1.y);
 	coord.x = p0.x;
 	coord.y = p0.y;
-	while (coord.x < p1.x)
+	while (coord.x <= p1.x)
 	{
-		mlx_pixel_put(mlx->ptr, mlx->win, coord.x, coord.y, 0x00aaaaaa);
+		if (data_line->steep)
+			mlx_pixel_put(mlx->ptr, mlx->win, coord.y, coord.x, (0x00aaaaaa));
+		else
+			mlx_pixel_put(mlx->ptr, mlx->win, coord.x, coord.y, (0x00aaaaaa));
 		data_line->error = data_line->error - data_line->delta_y;
 		if (data_line->error < 0)
 		{
