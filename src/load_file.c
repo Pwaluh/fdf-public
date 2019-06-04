@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 15:58:16 by judrion           #+#    #+#             */
-/*   Updated: 2019/05/22 20:03:09 by judrion          ###   ########.fr       */
+/*   Updated: 2019/05/31 14:24:06 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ t_file			*load_file(const char *filepath)
 	ft_putendl(filepath);
 	if ((file = (t_file*)ft_memalloc(sizeof(t_file))) == NULL)
 		throw_error(FILE_INIT_FAILED);
-	file->data = (int*)ft_memalloc(sizeof(int) * 10);
+	file->data = (int*)ft_memalloc(sizeof(int) * 9);
 	if (file->data == NULL)
 	{
 		ft_memdel((void**)&file);
 		throw_error(FILE_INIT_FAILED);
 	}
-	while (i < 10)
+	while (i < 9)
 	{
-		file->data[i] = i * 10;
+		file->data[i] = i;
 		i = i + 1;
 	}
-	file->line_size = 10;
-	file->line_nb = 1;
+	file->line_size = 3;
+	file->line_nb = 3;
 	return (file);
 }

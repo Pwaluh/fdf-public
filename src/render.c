@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 15:32:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/05/31 14:42:26 by judrion          ###   ########.fr       */
+/*   Updated: 2019/05/31 17:20:47 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,27 @@ static t_vector3d	*init_points(t_file *map, int i)
 	return (p);
 }
 
-static void				apply_padding(t_vector3d *p, int i, t_file *map)
+static void				apply_padding(t_vector3d *p)
 {
-	t_vector3d		tmp;
+	p[0].x = p[0].x * 100;
+	p[0].y = p[0].y * 100;
+	p[1].x = p[1].x * 100;
+	p[1].y = p[1].y * 100;
+	p[2].x = p[2].x * 100;
+	p[2].y = p[2].y * 100;
+}
+
+static void			isometric(t_vector3d *coord)
+{
+	int				i;
 	
-	tmp.x = i % map->line_size;
-	tmp.y = i / map->line_size;
-	p[0].x = p[0].x * 10;
-	p[0].y = p[0].y * 10;
-
-	p[1].x = p[1].x * 10;
-	p[1].y = p[1].y * 10;
-
-	p[2].x = p[2].x * 10;
-	p[2].y = p[2].y * 10;
+	i = 0;
+	while (i < 3)
+	{
+		coord[i].x = coord[i].x + (0.7 * coord[i].z) + 10;
+		coord[i].y = coord[i].y + (0.7 / 2) * coord[i].z + 10;
+		i = i + 1;
+	}
 }
 
 void				render(t_file *map, t_mlx *mlx)
@@ -78,7 +85,8 @@ void				render(t_file *map, t_mlx *mlx)
 	while (i < map->line_size * map->line_nb)
 	{
 		p = init_points(map, i);
-		apply_padding(p, i, map);
+		apply_padding(p);
+		isometric(p);
 		draw_lines(p, mlx);
 		ft_memdel((void**)&p);
 		i = i + 1;
