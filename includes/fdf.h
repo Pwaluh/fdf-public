@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/05/31 16:46:08 by judrion          ###   ########.fr       */
+/*   Updated: 2019/06/04 18:20:25 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 # define FDF_H
 
 # include "libft.h"
+# include "get_next_line.h"
 # include "mlx.h"
 # include <math.h>
 # include <errno.h>
+# include <fcntl.h>
 
 typedef enum				e_error
 {
@@ -26,7 +28,10 @@ typedef enum				e_error
 	FILE_INIT_FAILED,
 	DATA_LINE_INIT_FAILED,
 	MLX_INIT_FAILED,
-	INIT_POINTS
+	INIT_POINTS,
+	INIT_DATA_FAILED,
+	SPLITTED_DATA_FAILED,
+	OPEN_FAIL
 }							t_error;
 
 typedef struct				s_file
@@ -59,6 +64,10 @@ typedef struct				s_bresenham
 	int						steep;
 }							t_bresenham;
 
+
+int					*convert_data_type(char *str, int size);
+int					count_line(char *c_data, int line_nb);
+void				read_file(const char *filepath, t_file *file);
 
 int					key_hook(int keycode, t_mlx *mlx);
 void				free_data(t_mlx *mlx, t_file *map);
