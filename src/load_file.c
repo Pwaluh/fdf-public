@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 15:58:16 by judrion           #+#    #+#             */
-/*   Updated: 2019/06/06 17:54:37 by judrion          ###   ########.fr       */
+/*   Updated: 2019/06/10 17:02:06 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ char			*read_file(const char *filepath, t_file *file)
 		if (file->line_nb > 0)
 			full_file = ft_strjoin_free(full_file, str);
 		else
+		{
 			full_file = ft_strdup(str);
+			ft_strdel(&str);
+		}
 		file->line_nb = file->line_nb + 1;
 	}
 	close(fd);
@@ -70,25 +73,14 @@ char			*read_file(const char *filepath, t_file *file)
 
 int			*parse(char *c_data, int nb_line, int *line_size)
 {
-	char		**splitted_data;
+	char		**splitted_data = NULL;
 	int			i;
-	int			*i_data;
+	int			*i_data = NULL;
 
 	i = 0;
 	splitted_data = ft_strsplit(c_data, ' ');
-	if (splitted_data == NULL)
-		throw_error(SPLITTED_DATA_FAILED);
 	while (splitted_data[i])
 		i = i + 1;
-	i_data = (int*)ft_memalloc(sizeof(int) * i);
 	*line_size = i / nb_line;
-	i = 0;
-	while (splitted_data[i])
-	{
-		i_data[i] = ft_atoi(splitted_data[i]);
-		ft_strdel(&splitted_data[i]);
-		i = i + 1;
-	}
-	ft_memdel((void**)splitted_data);
 	return (i_data);
 }
