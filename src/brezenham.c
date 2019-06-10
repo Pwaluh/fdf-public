@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 16:56:39 by judrion           #+#    #+#             */
-/*   Updated: 2019/05/31 15:40:30 by judrion          ###   ########.fr       */
+/*   Updated: 2019/06/04 17:27:35 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void				bresenham_line(t_vector3d p0, t_vector3d p1, t_mlx *mlx)
 	t_vector3d			coord;
 
 	data_line = init_data_line(&p0, &p1);
-	printf("[%d:%d] - [%d:%d]\n", p0.x, p0.y, p1.x, p1.y);
 	coord.x = p0.x;
 	coord.y = p0.y;
 	while (coord.x <= p1.x)

@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/06/04 18:20:25 by judrion          ###   ########.fr       */
+/*   Updated: 2019/06/10 15:16:38 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <errno.h>
 # include <fcntl.h>
 
+# define					IMG_WIDTH	1000
+# define					IMG_HEIGHT	1000
 typedef enum				e_error
 {
 	USAGE,
@@ -65,9 +67,8 @@ typedef struct				s_bresenham
 }							t_bresenham;
 
 
-int					*convert_data_type(char *str, int size);
-int					count_line(char *c_data, int line_nb);
-void				read_file(const char *filepath, t_file *file);
+char				*read_file(const char *filepath, t_file *file);
+int					*parse(char *c_data, int nb_line, int *line_size);
 
 int					key_hook(int keycode, t_mlx *mlx);
 void				free_data(t_mlx *mlx, t_file *map);

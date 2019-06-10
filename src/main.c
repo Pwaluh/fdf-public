@@ -6,12 +6,13 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:30 by judrion           #+#    #+#             */
-/*   Updated: 2019/05/28 17:17:24 by judrion          ###   ########.fr       */
+/*   Updated: 2019/06/06 17:32:52 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "keycode.h"
+#include <stdio.h>
 
 t_mlx			*init_mlx(void)
 {
