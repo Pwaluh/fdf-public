@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:30 by judrion           #+#    #+#             */
-/*   Updated: 2019/06/06 17:32:52 by judrion          ###   ########.fr       */
+/*   Updated: 2019/06/17 11:51:58 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,22 @@ t_mlx			*init_mlx(void)
 		throw_error(MLX_INIT_FAILED);
 	mlx->ptr = mlx_init();
 	mlx->win = mlx_new_window(mlx->ptr, 1000, 1000, "fdf");
+	mlx->padding = 1;
 	return (mlx);
 }
 
 
 int				main(int argc, char **argv)
 {
-	t_file		*map;
 	t_mlx		*mlx;
 
 	if (argc != 2)
 		throw_error(USAGE);
 	if ((mlx = init_mlx()) == NULL)
 			throw_error(MLX_ERROR);
-	if ((map = load_file(argv[1])) == NULL)
+	if ((mlx->map = load_file(argv[1])) == NULL)
 		throw_error(MAP_ERROR);
-	render(map, mlx);
+	render(mlx);
 //	free_data(mlx, map);
 	mlx_hook(mlx->win, KEYPRESS, KPMASK, &key_hook, mlx);
 	mlx_loop(mlx->ptr);

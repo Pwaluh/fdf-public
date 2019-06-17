@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/06/10 15:16:38 by judrion          ###   ########.fr       */
+/*   Updated: 2019/06/17 10:27:04 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define					IMG_WIDTH	1000
 # define					IMG_HEIGHT	1000
+
 typedef enum				e_error
 {
 	USAGE,
@@ -47,6 +48,8 @@ typedef struct				s_mlx
 {
 	void					*ptr;
 	void					*win;
+	t_file					*map;
+	int						padding;
 }							t_mlx;
 
 
@@ -74,7 +77,7 @@ int					key_hook(int keycode, t_mlx *mlx);
 void				free_data(t_mlx *mlx, t_file *map);
 void				throw_error(int error_code);
 t_file				*load_file(const char *file);
-void				render(t_file *map, t_mlx *mlx);
+void				render(t_mlx *mlx);
 void				draw_lines(t_vector3d *p, t_mlx *mlx);
 void				bresenham_line(t_vector3d p0, t_vector3d p1, t_mlx *mlx);
 #endif

@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 15:58:16 by judrion           #+#    #+#             */
-/*   Updated: 2019/06/10 17:02:06 by judrion          ###   ########.fr       */
+/*   Updated: 2019/06/17 11:57:46 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ t_file			*load_file(const char *filepath)
 
 	if ((file = (t_file*)ft_memalloc(sizeof(t_file))) == NULL)
 		throw_error(FILE_INIT_FAILED);
-	file->data = (int*)ft_memalloc(sizeof(int) * 9);
+
+	file->line_nb = 0;
+	file->line_size = 0;
+	str = read_file(filepath, file);
+	file->data = parse(str, file->line_nb, &file->line_size);
 	if (file->data == NULL)
 	{
 		ft_memdel((void**)&file);
 		throw_error(FILE_INIT_FAILED);
 	}
-	file->line_nb = 0;
-	file->line_size = 0;
-	str = read_file(filepath, file);
-	file->data = parse(str, file->line_nb, &file->line_size);
 	printf("file->size : %d(c) - %d(l)\n", file->line_size, file->line_nb);
 	return (file);
 }

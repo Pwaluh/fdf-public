@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 15:32:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/06/10 15:23:00 by judrion          ###   ########.fr       */
+/*   Updated: 2019/06/17 10:26:53 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,17 @@ static t_vector3d	*init_points(t_file *map, int i)
 	return (p);
 }
 
-static void				apply_padding(t_vector3d *p)
+static void				apply_padding(t_vector3d *p, t_mlx *mlx)
 {
-	p[0].x = p[0].x * 20;
-	p[0].y = p[0].y * 20;
-	p[1].x = p[1].x * 20;
-	p[1].y = p[1].y * 20;
-	p[2].x = p[2].x * 20;
-	p[2].y = p[2].y * 20;
+	p[0].x = p[0].x * mlx->padding;
+	p[0].y = p[0].y * mlx->padding;
+	p[0].z = p[0].z * mlx->padding / 100;
+	p[1].x = p[1].x * mlx->padding;
+	p[1].y = p[1].y * mlx->padding;
+	p[1].z = p[1].z * mlx->padding / 100;
+	p[2].x = p[2].x * mlx->padding;
+	p[2].y = p[2].y * mlx->padding;
+	p[2].z = p[2].z * mlx->padding / 100;
 }
 
 /*
@@ -102,17 +105,17 @@ static void			isometric_view(t_vector3d *p)
 	}
 }
 
-void				render(t_file *map, t_mlx *mlx)
+void				render(t_mlx *mlx)
 {
 	int				i;
 	t_vector3d		*p;
 
 	i = 0;
 	render_menu();
-	while (i < map->line_size * map->line_nb)
+	while (i < mlx->map->line_size * mlx->map->line_nb)
 	{
-		p = init_points(map, i);
-		apply_padding(p);
+		p = init_points(mlx->map, i);
+		apply_padding(p, mlx);
 		isometric_view(p);
 		draw_lines(p, mlx);
 		ft_memdel((void**)&p);
