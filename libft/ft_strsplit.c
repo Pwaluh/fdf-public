@@ -6,82 +6,79 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 15:11:58 by judrion           #+#    #+#             */
-/*   Updated: 2019/06/10 17:04:08 by judrion          ###   ########.fr       */
+/*   Updated: 2019/06/18 16:07:54 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include <stdlib.h>
 
-static size_t	ft_count_word(const char *s, char c)
+int		is_whitespace(char c)
 {
-	size_t		i;
-	size_t		j;
+	if (c == ' ' || c == '\n' || c == '\t' || c == '\0' || c == '\r')
+		return (1);
+	return (0);
+}
 
-	i = 0;
-	j = *(s + i) != c && *(s + i) ? 1 : 0;
-	while (*(s + i))
+char	*copy(char *str, int i)
+{
+	char	*output;
+	int		j = 0;
+
+	output = (char*)malloc(sizeof(char) * (i + 1));
+	if (output == NULL)
+		return (output);
+	while (j < i)
 	{
-		if (*(s + i) != c && (i != 0 && *(s + i - 1) == c))
+		output[j] = str[j];
+		j = j + 1;
+	}
+	return (output);
+}
+
+char	**ft_split(char *str)
+{
+	char	**tab;
+	char	*tmp;
+	int		i = 0;
+	int		j = 0;
+	int		nb_mot = 0;
+
+	if (*str == '\0')
+	{
+		tab = (char**)malloc(sizeof(char*) * 1);
+		*tab = NULL;
+		return (tab);
+	}
+	tmp = str;
+	while (*str)
+	{
+		if (is_whitespace(*str) == 1 && is_whitespace(*(str - 1)) == 0)
 			j = j + 1;
-		i = i + 1;
+		str++;
 	}
-	return (j);
-}
-
-static void		ft_clean_split(char **words)
-{
-	size_t		i;
-
-	i = 0;
-	while (*(words + i) != NULL)
-	{
-		free(*(words + i));
-		*(words + i) = NULL;
-		i = i + 1;
-	}
-	free(words);
-}
-
-static char		**ft_split_words(const char *s, char c, size_t nb_word, \
-		char **words)
-{
-	size_t		i;
-	size_t		j;
-	size_t		k;
-
-	i = 0;
+	if (is_whitespace(*str) == 1 && is_whitespace(*(str - 1)) == 0)
+		j = j + 1;
+	tab = (char**)malloc(sizeof(char*) * (j + 1));
+	if (tab == NULL)
+		return (tab);
+	nb_mot = j;
 	j = 0;
-	while (i < nb_word)
+	str = tmp;
+	while (*str)
 	{
-		k = 0;
-		while (s[j] == c)
-			j++;
-		while (s[j + k] != c && s[j + k])
-			k++;
-		if (!(words[i] = ft_strsub(s, j, k)))
+		if (is_whitespace(*str) == 0)
+			i = i + 1;
+		if (is_whitespace(*str) == 1 && is_whitespace(*(str - 1)) == 0)
 		{
-			ft_clean_split(words);
-			return (NULL);
+			tab[j] = copy(str - i, i);
+			j = j + 1;
+			i = 0;
 		}
-		i++;
-		j = j + k;
+		str++;
 	}
-	words[i] = NULL;
-	return (words);
+	if (is_whitespace(*str) == 1 && is_whitespace(*(str - 1)) == 0)
+		tab[j] = copy(str - i, i);
+	tab[nb_mot] = NULL;
+	return (tab);
 }
 
-char			**ft_strsplit(const char *s, char c)
-{
-	size_t		nb_word;
-	char		**words;
-
-	if (s == NULL)
-		return (NULL);
-	nb_word = ft_count_word(s, c);
-	words = (char**)ft_memalloc(sizeof(char*) * nb_word + 1);
-	if (words == NULL)
-		return (NULL);
-	words = ft_split_words(s, c, nb_word, words);
-	return (words);
-}

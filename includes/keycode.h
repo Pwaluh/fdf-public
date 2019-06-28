@@ -6,17 +6,18 @@
 /*   By: jreynaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:17:23 by jreynaer          #+#    #+#             */
-/*   Updated: 2019/02/07 16:40:12 by hde-ghel         ###   ########.fr       */
+/*   Updated: 2019/06/17 10:22:39 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYCODE_H
-
 # define KEYCODE_H
+
+# define KEYPRESS	2
+# define KPMASK		(1L<<0)
 
 /*
 # define NOEVENTMASK 0L
-# define KPMASK (1L<<0)
 # define KEYRELEASEMASK (1L<<1)
 # define BUTTONPRESSMASK (1L<<2)
 # define BUTTONRELEASEMASK (1L<<3)
@@ -115,8 +116,6 @@
 
 # define SP_KEY 49
 # define BQ_KEY 50
-# define MN_KEY 27
-# define PL_KEY 24
 # define SBO_KEY 33
 # define SBC_KEY 30
 # define BSL_KEY 42
@@ -126,6 +125,9 @@
 # define PT_KEY 47
 # define SL_KEY 44
 */
+
+# define MN_KEY 78
+# define PL_KEY 69
 
 # define F1_KEY 65470
 # define F2_KEY 65471
@@ -153,7 +155,7 @@
 # define RIGHT_KEY 65363
 # define LEFT_KEY 65361
 
-# define ESC_KEY 65307
+# define ESC_KEY 53
 # define TAB_KEY 65289
 # define CL_KEY 272
 # define LSFT_KEY 257

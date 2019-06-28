@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 16:56:39 by judrion           #+#    #+#             */
-/*   Updated: 2019/06/04 17:27:35 by judrion          ###   ########.fr       */
+/*   Updated: 2019/06/18 16:25:51 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,18 @@ void				bresenham_line(t_vector3d p0, t_vector3d p1, t_mlx *mlx)
 {
 	t_bresenham			*data_line;
 	t_vector3d			coord;
+	int					color;
 
 	data_line = init_data_line(&p0, &p1);
 	coord.x = p0.x;
 	coord.y = p0.y;
+	color = (p0.z > 0) ? 0x0000ff33 : 0x003377ff;
 	while (coord.x <= p1.x)
 	{
 		if (data_line->steep)
-			mlx_pixel_put(mlx->ptr, mlx->win, coord.y, coord.x, (0x00aaaaaa));
+			mlx_pixel_put(mlx->ptr, mlx->win, coord.y, coord.x, color);
 		else
-			mlx_pixel_put(mlx->ptr, mlx->win, coord.x, coord.y, (0x00aaaaaa));
+			mlx_pixel_put(mlx->ptr, mlx->win, coord.x, coord.y, color);
 		data_line->error = data_line->error - data_line->delta_y;
 		if (data_line->error < 0)
 		{

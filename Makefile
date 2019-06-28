@@ -6,7 +6,7 @@
 #    By: judrion <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/20 16:15:36 by judrion           #+#    #+#              #
-#    Updated: 2019/06/06 17:31:17 by judrion          ###   ########.fr        #
+#    Updated: 2019/06/27 18:10:11 by judrion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ all: $(NAME)
 $(NAME):
 	$(MAKE) -C libft/
 	$(MAKE) -C minilibx/
-	gcc $(CFLAG) -o $(NAME) $(INCLUDE) $(LIB) $(SRCS) $(FRAMEWORK)
+	gcc $(DCFLAG) -o $(NAME) $(INCLUDE) $(LIB) $(SRCS) $(FRAMEWORK)
 
 .PHONY: clean fclean re lclean
 

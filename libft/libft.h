@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 17:29:12 by judrion           #+#    #+#             */
-/*   Updated: 2019/02/20 12:55:12 by judrion          ###   ########.fr       */
+/*   Updated: 2019/06/28 14:44:34 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr_fd(const char *s, int fd);
 void				ft_putendl_fd(const char *s, int fd);
-char				**ft_strsplit(const char *s, char c);
+//char				**ft_strsplit(const char *s, char c);
+char	**ft_split(char *str);
 void				ft_print_byte(void *c, size_t nb_octet);
 char				*ft_utf8_encode(unsigned int c);
 unsigned int		ft_utf8_decode(char *utf8);
