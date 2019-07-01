@@ -71,7 +71,7 @@ typedef struct				s_bresenham
 
 
 t_list				*read_file(const char *filepath, t_file *file);
-int					*parse(char *c_data, int nb_line, int *line_size);
+void				parser(t_list *list, int *data);
 
 int					key_hook(int keycode, t_mlx *mlx);
 void				free_data(t_mlx *mlx, t_file *map);
