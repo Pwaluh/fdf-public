@@ -53,13 +53,16 @@ void				bresenham_line(t_vector3d p0, t_vector3d p1, t_mlx *mlx)
 	data_line = init_data_line(&p0, &p1);
 	coord.x = p0.x;
 	coord.y = p0.y;
-	color = (p0.z > 0) ? 0x0000ff33 : 0x003377ff;
+	//color = (p0.z > 0) ? 0x0000ff33 : 0x003377ff;
+	color = 0x00aaaaaa;
 	while (coord.x <= p1.x)
 	{
 		if (data_line->steep)
-			mlx_pixel_put(mlx->ptr, mlx->win, coord.y, coord.x, color);
+			put_pixel(mlx, coord.x, coord.y, color);
+		//	mlx_pixel_put(mlx->ptr, mlx->win, coord.y, coord.x, color);
 		else
-			mlx_pixel_put(mlx->ptr, mlx->win, coord.x, coord.y, color);
+			put_pixel(mlx, coord.y, coord.x, color);
+			//mlx_pixel_put(mlx->ptr, mlx->win, coord.x, coord.y, color);
 		data_line->error = data_line->error - data_line->delta_y;
 		if (data_line->error < 0)
 		{
@@ -68,6 +71,13 @@ void				bresenham_line(t_vector3d p0, t_vector3d p1, t_mlx *mlx)
 		}
 		coord.x = coord.x + 1;
 	}
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img->ptr, 0, 0);
 	ft_memdel((void**)&data_line);
+
+}
+
+void				put_pixel(t_mlx *mlx, int x, int y, int color)
+{
+
 }
 

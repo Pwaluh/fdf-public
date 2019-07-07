@@ -62,13 +62,13 @@ static void				apply_padding(t_vector3d *p, t_mlx *mlx)
 {
 	p[0].x = p[0].x * mlx->padding;
 	p[0].y = p[0].y * mlx->padding;
-	p[0].z = p[0].z * mlx->padding * 19 / 100;
+	p[0].z = p[0].z * mlx->padding / 100;
 	p[1].x = p[1].x * mlx->padding;
 	p[1].y = p[1].y * mlx->padding;
-	p[1].z = p[1].z * mlx->padding * 19 / 100;
+	p[1].z = p[1].z * mlx->padding / 100;
 	p[2].x = p[2].x * mlx->padding;
 	p[2].y = p[2].y * mlx->padding;
-	p[2].z = p[2].z * mlx->padding * 19 / 100;
+	p[2].z = p[2].z * mlx->padding / 100;
 }
 
 /*

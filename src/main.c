@@ -24,6 +24,16 @@ t_mlx			*init_mlx(void)
 	mlx->ptr = mlx_init();
 	mlx->win = mlx_new_window(mlx->ptr, 1000, 1000, "fdf");
 	mlx->padding = 2;
+	mlx->img = (t_img*)ft_memalloc(sizeof(t_img));
+	if (mlx->img == NULL)
+		throw_error(MLX_INIT_FAILED);
+	mlx->img->bpp = 32;
+	mlx->img->size_line = 1000;
+	mlx->img->endian = 0;
+	mlx->img->ptr = mlx_new_image(mlx->ptr, 1000, 1000);
+	mlx->img->array = (int*)mlx_get_data_addr(mlx->ptr, \
+		       &mlx->img->bpp, &mlx->img->size_line, &mlx->img->endian);
+	printf("addr : %p\n", mlx->img->array);
 	return (mlx);
 }
 
@@ -35,10 +45,10 @@ int				main(int argc, char **argv)
 	if (argc != 2)
 		throw_error(USAGE);
 	if ((mlx = init_mlx()) == NULL)
-			throw_error(MLX_ERROR);
+		throw_error(MLX_ERROR);
 	if ((mlx->map = load_file(argv[1])) == NULL)
 		throw_error(MAP_ERROR);
-//	render(mlx);
+	render(mlx);
 //	free_data(mlx, map);
 	mlx_hook(mlx->win, KEYPRESS, KPMASK, &key_hook, mlx);
 	mlx_loop(mlx->ptr);

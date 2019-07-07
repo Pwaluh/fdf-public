@@ -44,12 +44,22 @@ typedef struct				s_file
 	int						line_nb;
 }							t_file;
 
+typedef struct				s_img
+{
+	void				*ptr;
+	int				*array;
+	int				size_line;
+	int				bpp;
+	int				endian;
+}					t_img;
+
 typedef struct				s_mlx
 {
 	void					*ptr;
 	void					*win;
 	t_file					*map;
-	int						padding;
+	t_img					*img;
+	int					padding;
 }							t_mlx;
 
 
@@ -80,4 +90,5 @@ t_file				*load_file(const char *file);
 void				render(t_mlx *mlx);
 void				draw_lines(t_vector3d *p, t_mlx *mlx);
 void				bresenham_line(t_vector3d p0, t_vector3d p1, t_mlx *mlx);
+void				put_pixel(t_mlx *mlx, int x, int y, int color);
 #endif
