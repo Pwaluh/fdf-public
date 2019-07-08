@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:30 by judrion           #+#    #+#             */
-/*   Updated: 2019/06/27 18:04:57 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/08 17:34:56 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,17 @@ t_mlx			*init_mlx(void)
 	if (mlx == NULL)
 		throw_error(MLX_INIT_FAILED);
 	mlx->ptr = mlx_init();
-	mlx->win = mlx_new_window(mlx->ptr, 1000, 1000, "fdf");
-	mlx->padding = 2;
+	mlx->win = mlx_new_window(mlx->ptr, 2000, 2000, "fdf");
+	mlx->padding = 1;
 	mlx->img = (t_img*)ft_memalloc(sizeof(t_img));
 	if (mlx->img == NULL)
 		throw_error(MLX_INIT_FAILED);
 	mlx->img->bpp = 32;
-	mlx->img->size_line = 1000;
+	mlx->img->size_line = 2000;
 	mlx->img->endian = 0;
-	mlx->img->ptr = mlx_new_image(mlx->ptr, 1000, 1000);
-	mlx->img->array = (int*)mlx_get_data_addr(mlx->ptr, \
-		       &mlx->img->bpp, &mlx->img->size_line, &mlx->img->endian);
-	printf("addr : %p\n", mlx->img->array);
+	mlx->img_ptr = mlx_new_image(mlx->ptr, 2000, 2000);
+	mlx->img_array = (int*)mlx_get_data_addr(mlx->img_ptr, \
+					 &mlx->img->bpp, &mlx->img->size_line, &mlx->img->endian);
 	return (mlx);
 }
 

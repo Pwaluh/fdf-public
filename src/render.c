@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 15:32:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/06/18 17:25:38 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/08 17:36:34 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static void				apply_padding(t_vector3d *p, t_mlx *mlx)
 	p[2].z = p[2].z * mlx->padding / 100;
 }
 
-/*
 static void			parallel_view(t_vector3d *coord)
 {
 	int				i;
@@ -84,8 +83,7 @@ static void			parallel_view(t_vector3d *coord)
 		i = i + 1;
 	}
 }
-*/
-
+/*
 static void			isometric_view(t_vector3d *p)
 {
 	double		old_x;
@@ -104,22 +102,23 @@ static void			isometric_view(t_vector3d *p)
 		i = i + 1;
 	}
 }
-
+*/
 void				render(t_mlx *mlx)
 {
-	int				i;
+	int				i = 0;
 	t_vector3d		*p;
 
 	i = 0;
 	render_menu();
-	while (i < mlx->map->line_size * mlx->map->line_nb)
+	while (i < (mlx->map->line_size * mlx->map->line_nb))
 	{
 		p = init_points(mlx->map, i);
 		apply_padding(p, mlx);
-		isometric_view(p);
-		draw_lines(p, mlx);
+		parallel_view(p);
+		draw_lines(p, mlx, i);
 		ft_memdel((void**)&p);
 		i = i + 1;
 	}
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img_ptr, 0, 0);
 	render_log();
 }
