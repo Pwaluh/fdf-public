@@ -6,19 +6,17 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:15:49 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/08 17:29:21 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/10 14:08:48 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-void				draw_lines(t_vector3d *p, t_mlx *mlx, int i)
+void				draw_lines(t_vector3d *p, t_mlx *mlx)
 {
-	if (i % mlx->map->line_size != mlx->map->line_size - 1)
-		bresenham_line(p[0], p[1], mlx);
-	if (i < (mlx->map->line_size * mlx->map->line_nb) - mlx->map->line_nb)
-		bresenham_line(p[0], p[2], mlx);
+	bresenham_line(p[0], p[1], mlx);
+	bresenham_line(p[0], p[2], mlx);
 }
 
 static t_bresenham		*init_data_line(t_vector3d *p0, t_vector3d *p1)
@@ -55,7 +53,10 @@ void				bresenham_line(t_vector3d p0, t_vector3d p1, t_mlx *mlx)
 	data_line = init_data_line(&p0, &p1);
 	coord.x = p0.x;
 	coord.y = p0.y;
-	color = 0x00aaaaaa;
+	if (p0.z > 0)
+		color = 0x00bb4444;
+	else
+		color = 0x00aaaaaa;
 	while (coord.x < p1.x)
 	{
 		if (data_line->steep)
@@ -77,8 +78,8 @@ void				put_pixel(t_mlx *mlx, int x, int y, int color)
 {
 	int				indice;
 
-	indice = (y * 2000) + x;
-	if (indice < (2000 * 2000) && indice > 0)
+	indice = (y * IMG_WIDTH) + x;
+	if (indice < (IMG_WIDTH * IMG_HEIGHT) && indice > 0)
 	{
 		mlx->img_array[indice] = mlx_get_color_value(mlx->ptr, color);
 	}
