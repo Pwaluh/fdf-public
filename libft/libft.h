@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 17:29:12 by judrion           #+#    #+#             */
-/*   Updated: 2019/06/28 14:44:34 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/08 18:21:21 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void(*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				memswap(void *a, void *b, size_t size);
+void				ft_reverse_list(t_list **list);
 #endif
