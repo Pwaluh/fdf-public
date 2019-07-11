@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 15:58:16 by judrion           #+#    #+#             */
-/*   Updated: 2019/06/28 17:05:23 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/10 14:03:11 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		print_list(t_list *list)
 {
 	int		i = 0;
 
-	while (list->next)
+	while (list)
 	{
 		printf("elem n°%d\t%p->%p\n", i, list, list->next);
 		if (list->content_size == 0)
@@ -42,7 +42,7 @@ static int			setup_lines(t_list *file_lines)
 		while (*(char*)(beg->content + i))
 		{
 			new_number = ft_strchr((char*)(beg->content + i), ' ');
-			if (new_number && ft_isdigit(*(new_number + 1)) == 1)
+			if (new_number && ft_isdigit(*(new_number - 1)) == 1)
 			{
 				*new_number = '\0';
 				beg->content_size = beg->content_size + 1;
@@ -108,9 +108,11 @@ t_file			*load_file(const char *filepath)
 	if ((file = (t_file*)ft_memalloc(sizeof(t_file))) == NULL)
 		throw_error(FILE_INIT_FAILED);
 	file->line_nb = 0;
+	full_size = 0;
 	file_line = read_file(filepath, file);
-	print_list(file_line);
+	//print_list(file_line);
 	setup_lines(file_line);
+	ft_reverse_list(&file_line);
 	file->line_size = biggest_line(file_line);
 	full_size = file->line_size * file->line_nb;
 	file->data = (int*)ft_memalloc(sizeof(int) * full_size);
@@ -135,7 +137,7 @@ t_list			*read_file(const char *filepath, t_file *file)
 	{
 		new_elem = ft_lstnew(NULL, 0);
 		new_elem->content = str;
-		new_elem->content_size = 0;
+		new_elem->content_size = 1;
 		ft_lstadd(&full_file, new_elem);
 		file->line_nb = file->line_nb + 1;
 	}
