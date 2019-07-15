@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/10 14:35:50 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/13 17:49:53 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ typedef struct				s_mlx
 	double					padding;
 }							t_mlx;
 
+typedef struct				s_vector2d
+{
+	int						x;
+	int						y;
+}							t_vector2d;
 
 typedef struct				s_vector3d
 {
@@ -79,6 +84,15 @@ typedef struct				s_bresenham
 	int						steep;
 }							t_bresenham;
 
+typedef struct				s_xiaolin_wu
+{
+	int						steep;
+	float					delta_x;
+	float					delta_y;
+	float					gradient;
+	float					y;
+}							t_xiaolin_wu;
+
 
 t_list				*read_file(const char *filepath, t_file *file);
 void				parser(t_list *list, int *data);
@@ -90,5 +104,8 @@ t_file				*load_file(const char *file);
 void				render(t_mlx *mlx);
 void				draw_lines(t_vector3d *p, t_mlx *mlx);
 void				bresenham_line(t_vector3d p0, t_vector3d p1, t_mlx *mlx);
-void				put_pixel(t_mlx *mlx, int x, int y, int color);
+void				put_pixel(t_mlx *mlx, t_vector2d coord, float b, int c);
+
+int					brightness(int color, float b);
+void				xiaoline_wu_line(t_vector2d a, t_vector2d b, t_mlx *mlx);
 #endif
