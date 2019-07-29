@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/29 17:34:42 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/29 19:44:45 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 # define					IMG_WIDTH	2000
 # define					IMG_HEIGHT	1000
-# define					ONE_NUMKEY	83
-# define					TWO_NUMKEY	84
+# define					ONE_KEYNUM	83
+# define					TWO_KEYNUM	84
 # define					ISO			0
 # define					PARA		1
 

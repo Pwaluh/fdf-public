@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:30 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/29 17:56:33 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/29 20:08:44 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_mlx			*init_mlx(void)
 	mlx->img_ptr = mlx_new_image(mlx->ptr, IMG_WIDTH, IMG_HEIGHT);
 	mlx->img_array = (int*)mlx_get_data_addr(mlx->img_ptr, \
 					 &mlx->img->bpp, &mlx->img->size_line, &mlx->img->endian);
+	mlx->view = ISO;
 	return (mlx);
 }
 
@@ -76,7 +77,6 @@ int				main(int argc, char **argv)
 	printf("padding : %f\n", mlx->padding);
 	scale_z(mlx);
 	render(mlx);
-//	free_data(mlx, map);
 	mlx_hook(mlx->win, KEYPRESS, KPMASK, &key_hook, mlx);
 	mlx_loop(mlx->ptr);
 	return (0);
