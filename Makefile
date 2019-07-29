@@ -6,13 +6,13 @@
 #    By: judrion <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/20 16:15:36 by judrion           #+#    #+#              #
-#    Updated: 2019/06/27 18:10:11 by judrion          ###   ########.fr        #
+#    Updated: 2019/07/29 17:29:27 by judrion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 SRC = brezenham color error free_data key_hook load_file main mouse_hook \
-	  render get_next_line
+	  render get_next_line view
 SRCS = $(addprefix src/, $(addsuffix .c, $(SRC)))
 OBJ = $(SRCS:.c=.o)
 INCLUDE = -Llibft/ -Lminilibx/
@@ -26,7 +26,7 @@ all: $(NAME)
 $(NAME):
 	$(MAKE) -C libft/
 	$(MAKE) -C minilibx/
-	gcc $(DCFLAG) -o $(NAME) $(INCLUDE) $(LIB) $(SRCS) $(FRAMEWORK)
+	gcc $(CFLAG) -o $(NAME) $(INCLUDE) $(LIB) $(SRCS) $(FRAMEWORK)
 
 .PHONY: clean fclean re lclean
 
