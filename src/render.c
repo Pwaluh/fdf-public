@@ -6,21 +6,17 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 15:32:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/29 17:50:40 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/29 18:13:25 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-static void			render_menu()
+void				draw_lines(t_vector3d *p, t_mlx *mlx)
 {
-	ft_putendl("Menu");
-}
-
-static void			render_log()
-{
-	ft_putendl("Log");
+	bresenham_line(p[0], p[1], mlx);
+	bresenham_line(p[0], p[2], mlx);
 }
 
 static t_vector3d	*init_points(t_file *map, int i)
@@ -68,7 +64,6 @@ void				render(t_mlx *mlx)
 	t_vector3d		*p;
 
 	i = 0;
-	render_menu();
 	while (i < (mlx->map->line_size * mlx->map->line_nb))
 	{
 		p = init_points(mlx->map, i);
@@ -81,6 +76,5 @@ void				render(t_mlx *mlx)
 		ft_memdel((void**)&p);
 		i = i + 1;
 	}
-	//mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img_ptr, 0, 0);
-	render_log();
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img_ptr, 0, 0);
 }

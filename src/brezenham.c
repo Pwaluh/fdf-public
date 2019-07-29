@@ -6,18 +6,11 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:15:49 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/10 14:08:48 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/29 17:59:24 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
-
-void				draw_lines(t_vector3d *p, t_mlx *mlx)
-{
-	bresenham_line(p[0], p[1], mlx);
-	bresenham_line(p[0], p[2], mlx);
-}
 
 static t_bresenham		*init_data_line(t_vector3d *p0, t_vector3d *p1)
 {
@@ -80,7 +73,5 @@ void				put_pixel(t_mlx *mlx, int x, int y, int color)
 
 	indice = (y * IMG_WIDTH) + x;
 	if (indice < (IMG_WIDTH * IMG_HEIGHT) && indice > 0)
-	{
 		mlx->img_array[indice] = mlx_get_color_value(mlx->ptr, color);
-	}
 }
