@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/13 17:49:53 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/29 17:34:42 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 
 # define					IMG_WIDTH	2000
 # define					IMG_HEIGHT	1000
+# define					ONE_NUMKEY	83
+# define					TWO_NUMKEY	84
+# define					ISO			0
+# define					PARA		1
 
 typedef enum				e_error
 {
@@ -60,6 +64,7 @@ typedef struct				s_mlx
 	t_file					*map;
 	t_img					*img;
 	double					padding;
+	int						view;
 }							t_mlx;
 
 typedef struct				s_vector2d
@@ -104,8 +109,11 @@ t_file				*load_file(const char *file);
 void				render(t_mlx *mlx);
 void				draw_lines(t_vector3d *p, t_mlx *mlx);
 void				bresenham_line(t_vector3d p0, t_vector3d p1, t_mlx *mlx);
-void				put_pixel(t_mlx *mlx, t_vector2d coord, float b, int c);
+//void				put_pixel(t_mlx *mlx, t_vector2d coord, float b, int c);
+void				put_pixel(t_mlx *mlx, int x, int y, int color);
 
 int					brightness(int color, float b);
 void				xiaoline_wu_line(t_vector2d a, t_vector2d b, t_mlx *mlx);
+void				isometric_view(t_vector3d *p, t_mlx *mlx);
+void				parallel_view(t_vector3d *coord);
 #endif

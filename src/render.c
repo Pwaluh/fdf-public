@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 15:32:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/10 14:56:32 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/29 17:50:40 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,47 +62,6 @@ static void				apply_padding(t_vector3d *p, t_mlx *mlx)
 	p[2].x = p[2].x * mlx->padding;
 	p[2].y = p[2].y * mlx->padding;
 }
-
-/*
-static void			parallel_view(t_vector3d *coord)
-{
-	int				i;
-
-	i = 0;
-	while (i < 3)
-	{
-		coord[i].x = coord[i].x + (0.7 * coord[i].z) + 10;
-		coord[i].y = coord[i].y + (0.7 / 2) * coord[i].z + 10;
-		i = i + 1;
-	}
-}
-*/
-
-static void			isometric_view(t_vector3d *p, t_mlx *mlx)
-{
-	double		old_x;
-	int			i;
-	//double		u;
-//	double		v;
-//	double		alpha = 1;
-	t_vector3d	offset;
-
-	i = 0;
-//TODO : ameliorer le calcul de l'offset (le sortir pour ne pas recalculer a chaque fois)
-	offset.x = (IMG_WIDTH / 2) - (((mlx->padding * mlx->map->line_size) / 2) - ((mlx->padding * mlx->map->line_nb) / 2))  * cos(0.6);
-	offset.y = (IMG_HEIGHT / 2) - (((mlx->padding * mlx->map->line_size) / 2) + ((mlx->padding * mlx->map->line_nb) / 2)) * sin(0.5);
-	while (i < 3)
-	{
-		//u = p[i].x * cos(alpha) + p[i].y * cos(alpha + 2.0944) + p[i].z * cos(alpha - 2.0944);
-		//v = p[i].x * sin(alpha) + p[i].y * sin(alpha + 2.0944) + p[i].z * sin(alpha - 2.0944);
-		old_x = p[i].x;
-		p[i].x = (p[i].x - p[i].y) * cos(0.6) + offset.x;
-		p[i].y = (old_x + p[i].y) * sin(0.5) - p[i].z + offset.y;
-		//p[i].x = u;
-		//p[i].y = v;
-		i = i + 1;
-	}
-}
 void				render(t_mlx *mlx)
 {
 	int				i = 0;
@@ -114,11 +73,14 @@ void				render(t_mlx *mlx)
 	{
 		p = init_points(mlx->map, i);
 		apply_padding(p, mlx);
-		isometric_view(p, mlx);
+		if (mlx->view == PARA)
+			parallel_view(p);
+		else
+			isometric_view(p, mlx);
 		draw_lines(p, mlx);
 		ft_memdel((void**)&p);
 		i = i + 1;
 	}
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img_ptr, 0, 0);
+	//mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img_ptr, 0, 0);
 	render_log();
 }
