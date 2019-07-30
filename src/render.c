@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 15:32:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/29 18:13:25 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/30 16:24:10 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void				draw_lines(t_vector3d *p, t_mlx *mlx)
 {
 	bresenham_line(p[0], p[1], mlx);
 	bresenham_line(p[0], p[2], mlx);
+	if (mlx->lines == 3)
+		bresenham_line(p[2], p[1], mlx);
 }
 
 static t_vector3d	*init_points(t_file *map, int i)
@@ -58,12 +60,14 @@ static void				apply_padding(t_vector3d *p, t_mlx *mlx)
 	p[2].x = p[2].x * mlx->padding;
 	p[2].y = p[2].y * mlx->padding;
 }
+
 void				render(t_mlx *mlx)
 {
 	int				i = 0;
 	t_vector3d		*p;
 
 	i = 0;
+	scale_z(mlx);
 	while (i < (mlx->map->line_size * mlx->map->line_nb))
 	{
 		p = init_points(mlx->map, i);
