@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:30 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/29 20:08:44 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/30 16:24:02 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,13 @@ t_mlx			*init_mlx(void)
 	mlx->img_array = (int*)mlx_get_data_addr(mlx->img_ptr, \
 					 &mlx->img->bpp, &mlx->img->size_line, &mlx->img->endian);
 	mlx->view = ISO;
+	mlx->fun = 0;
+	mlx->new_img = 1;
+	mlx->lines = 2;
 	return (mlx);
 }
 
-static void			scale_z(t_mlx *mlx)
+void			scale_z(t_mlx *mlx)
 {
 	int				i;
 	int				min;
@@ -57,9 +60,21 @@ static void			scale_z(t_mlx *mlx)
 	while (i < mlx->map->line_size * mlx->map->line_nb)
 	{
 		if (mlx->map->data[i] != 0)
-			mlx->map->data[i] = (double)mlx->map->data[i] / (max - min) * 100;
+			mlx->map->data[i] = (double)mlx->map->data[i] / (max - min) * mlx->padding;
 		i = i + 1;
 	}
+}
+
+int				loop(t_mlx *mlx)
+{
+	if (mlx->fun == 1)
+	{
+		key_hook(PL_KEY, mlx);
+		usleep(75000);
+	}
+	else
+		usleep(50000);
+	return (1);
 }
 
 int				main(int argc, char **argv)
@@ -75,9 +90,9 @@ int				main(int argc, char **argv)
 	mlx->padding = (double)(IMG_WIDTH / 2) / mlx->map->line_size;
 	printf("size_line : %d\n", mlx->map->line_size);
 	printf("padding : %f\n", mlx->padding);
-	scale_z(mlx);
 	render(mlx);
 	mlx_hook(mlx->win, KEYPRESS, KPMASK, &key_hook, mlx);
+	mlx_loop_hook(mlx->ptr, loop, mlx);
 	mlx_loop(mlx->ptr);
 	return (0);
 }

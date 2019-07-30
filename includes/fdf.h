@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/29 19:44:45 by judrion          ###   ########.fr       */
+/*   Updated: 2019/07/30 16:23:01 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <errno.h>
 # include <fcntl.h>
 
-# define					IMG_WIDTH	2000
-# define					IMG_HEIGHT	1000
+# define					IMG_WIDTH	2880
+# define					IMG_HEIGHT	1440
 # define					ONE_KEYNUM	83
 # define					TWO_KEYNUM	84
 # define					ISO			0
@@ -48,6 +48,11 @@ typedef struct				s_file
 	int						line_nb;
 }							t_file;
 
+typedef struct				s_key_hook
+{
+	int						fun;
+}							t_key_hook;
+
 typedef struct				s_img
 {
 	int						size_line;
@@ -65,6 +70,9 @@ typedef struct				s_mlx
 	t_img					*img;
 	double					padding;
 	int						view;
+	int						fun;
+	int						new_img;
+	int						lines;
 }							t_mlx;
 
 typedef struct				s_vector2d
@@ -111,6 +119,7 @@ void				draw_lines(t_vector3d *p, t_mlx *mlx);
 void				bresenham_line(t_vector3d p0, t_vector3d p1, t_mlx *mlx);
 //void				put_pixel(t_mlx *mlx, t_vector2d coord, float b, int c);
 void				put_pixel(t_mlx *mlx, int x, int y, int color);
+void				scale_z(t_mlx *mlx);
 
 int					brightness(int color, float b);
 void				xiaoline_wu_line(t_vector2d a, t_vector2d b, t_mlx *mlx);
