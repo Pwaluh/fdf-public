@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:15:49 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/30 15:52:23 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/01 13:08:36 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void				bresenham_line(t_vector3d p0, t_vector3d p1, t_mlx *mlx)
 		color = 0x00bb4444;
 	else
 		color = 0x00aaaaaa;
-	while (coord.x < p1.x)
+	while (coord.x < p1.x && (coord.x < IMG_WIDTH && coord.x > 0))
 	{
 		if (data_line->steep)
 			put_pixel(mlx, coord.y, coord.x, color);
