@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 15:58:16 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/10 14:03:11 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/04 15:05:03 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ t_file			*load_file(const char *filepath)
 	if (!file->data)
 		throw_error(FILE_INIT_FAILED);
 	parser(file_line, file->data);
+	//TODO : free la liste
 	return (file);
 }
 

@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/30 16:23:01 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/04 14:43:59 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct				s_mlx
 	void					*img_ptr;
 	int						*img_array;
 	t_file					*map;
-	t_img					*img;
+	t_img					img;
 	double					padding;
 	int						view;
 	int						fun;
@@ -111,7 +111,7 @@ t_list				*read_file(const char *filepath, t_file *file);
 void				parser(t_list *list, int *data);
 
 int					key_hook(int keycode, t_mlx *mlx);
-void				free_data(t_mlx *mlx, t_file *map);
+void				free_data(t_mlx *mlx);
 void				throw_error(int error_code);
 t_file				*load_file(const char *file);
 void				render(t_mlx *mlx);
