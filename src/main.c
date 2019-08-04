@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:30 by judrion           #+#    #+#             */
-/*   Updated: 2019/07/30 16:24:02 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/04 14:43:45 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,12 @@ t_mlx			*init_mlx(void)
 		throw_error(MLX_INIT_FAILED);
 	mlx->ptr = mlx_init();
 	mlx->win = mlx_new_window(mlx->ptr, IMG_WIDTH, IMG_HEIGHT, "fdf");
-	mlx->img = (t_img*)ft_memalloc(sizeof(t_img));
-	if (mlx->img == NULL)
-		throw_error(MLX_INIT_FAILED);
-	mlx->img->bpp = 32;
-	mlx->img->size_line = IMG_WIDTH;
-	mlx->img->endian = 0;
+	mlx->img.bpp = 32;
+	mlx->img.size_line = IMG_WIDTH;
+	mlx->img.endian = 0;
 	mlx->img_ptr = mlx_new_image(mlx->ptr, IMG_WIDTH, IMG_HEIGHT);
 	mlx->img_array = (int*)mlx_get_data_addr(mlx->img_ptr, \
-					 &mlx->img->bpp, &mlx->img->size_line, &mlx->img->endian);
+				 &mlx->img.bpp, &mlx->img.size_line, &mlx->img.endian);
 	mlx->view = ISO;
 	mlx->fun = 0;
 	mlx->new_img = 1;
@@ -69,7 +66,7 @@ int				loop(t_mlx *mlx)
 {
 	if (mlx->fun == 1)
 	{
-		key_hook(PL_KEY, mlx);
+		key_hook(NKPL_KEY, mlx);
 		usleep(75000);
 	}
 	else
@@ -91,7 +88,7 @@ int				main(int argc, char **argv)
 	printf("size_line : %d\n", mlx->map->line_size);
 	printf("padding : %f\n", mlx->padding);
 	render(mlx);
-	mlx_hook(mlx->win, KEYPRESS, KPMASK, &key_hook, mlx);
+	mlx_hook(mlx->win, KP, KPMASK, &key_hook, mlx);
 	mlx_loop_hook(mlx->ptr, loop, mlx);
 	mlx_loop(mlx->ptr);
 	return (0);
