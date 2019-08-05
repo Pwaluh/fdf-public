@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/04 14:43:59 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/05 14:13:02 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ typedef enum				e_error
 	OPEN_FAIL
 }							t_error;
 
+typedef struct				s_vector2d
+{
+	int						x;
+	int						y;
+}							t_vector2d;
+
+typedef struct				s_vector3d
+{
+	int						x;
+	int						y;
+	int						z;
+}							t_vector3d;
+
 typedef struct				s_file
 {
 	int						*data;
@@ -68,25 +81,13 @@ typedef struct				s_mlx
 	int						*img_array;
 	t_file					*map;
 	t_img					img;
+	t_vector3d				offset;
 	double					padding;
 	int						view;
 	int						fun;
 	int						new_img;
 	int						lines;
 }							t_mlx;
-
-typedef struct				s_vector2d
-{
-	int						x;
-	int						y;
-}							t_vector2d;
-
-typedef struct				s_vector3d
-{
-	int						x;
-	int						y;
-	int						z;
-}							t_vector3d;
 
 typedef struct				s_bresenham
 {
@@ -125,4 +126,7 @@ int					brightness(int color, float b);
 void				xiaoline_wu_line(t_vector2d a, t_vector2d b, t_mlx *mlx);
 void				isometric_view(t_vector3d *p, t_mlx *mlx);
 void				parallel_view(t_vector3d *coord);
+void				line(int x0, int y0, int x1, int y1, t_mlx *mlx);
+
+void				memdel_size(t_list **list);
 #endif
