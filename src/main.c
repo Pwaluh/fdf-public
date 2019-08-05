@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:30 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/04 14:43:45 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/05 16:52:03 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			scale_z(t_mlx *mlx)
 	while (i < mlx->map->line_size * mlx->map->line_nb)
 	{
 		if (mlx->map->data[i] != 0)
-			mlx->map->data[i] = (double)mlx->map->data[i] / (max - min) * mlx->padding;
+			mlx->map->data[i] = (double)mlx->map->data[i] / (max - min) * 100;
 		i = i + 1;
 	}
 }
@@ -67,7 +67,7 @@ int				loop(t_mlx *mlx)
 	if (mlx->fun == 1)
 	{
 		key_hook(NKPL_KEY, mlx);
-		usleep(75000);
+		usleep(7500);
 	}
 	else
 		usleep(50000);
@@ -85,11 +85,11 @@ int				main(int argc, char **argv)
 	if ((mlx->map = load_file(argv[1])) == NULL)
 		throw_error(MAP_ERROR);
 	mlx->padding = (double)(IMG_WIDTH / 2) / mlx->map->line_size;
-	printf("size_line : %d\n", mlx->map->line_size);
-	printf("padding : %f\n", mlx->padding);
-	render(mlx);
+	mlx->offset.x = (IMG_WIDTH / 2) - (((mlx->padding * mlx->map->line_size) / 2) - ((mlx->padding * mlx->map->line_nb) / 2))  * cos(0.523599);
+	mlx->offset.y = (IMG_HEIGHT / 2) - (((mlx->padding * mlx->map->line_size) / 2) + ((mlx->padding * mlx->map->line_nb) / 2)) * sin(0.523599);
+	//render(mlx);
 	mlx_hook(mlx->win, KP, KPMASK, &key_hook, mlx);
-	mlx_loop_hook(mlx->ptr, loop, mlx);
+	//mlx_loop_hook(mlx->ptr, loop, mlx);
 	mlx_loop(mlx->ptr);
 	return (0);
 }
