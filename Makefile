@@ -6,17 +6,17 @@
 #    By: judrion <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/20 16:15:36 by judrion           #+#    #+#              #
-#    Updated: 2019/07/29 17:29:27 by judrion          ###   ########.fr        #
+#    Updated: 2019/08/07 18:13:12 by judrion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 SRC = brezenham color error free_data key_hook load_file main mouse_hook \
-	  render get_next_line view
+	  render get_next_line view parser
 SRCS = $(addprefix src/, $(addsuffix .c, $(SRC)))
 OBJ = $(SRCS:.c=.o)
-INCLUDE = -Llibft/ -Lminilibx/
-LIB = -lft -lmlx -Ilibft/ -Iminilibx -Iincludes/
+INCLUDE = -Llibft -Lminilibx/
+LIB = -lft -lmlx -Ilibft -Iminilibx -Iincludes/
 CFLAG = -Wall -Werror -Wextra -Iincludes/
 DCFLAG = -Wall -Werror -Wextra -Iincludes/ -fsanitize=address
 FRAMEWORK = -framework OpenGL -framework AppKit
@@ -26,7 +26,7 @@ all: $(NAME)
 $(NAME):
 	$(MAKE) -C libft/
 	$(MAKE) -C minilibx/
-	gcc $(CFLAG) -o $(NAME) $(INCLUDE) $(LIB) $(SRCS) $(FRAMEWORK)
+	gcc $(DCFLAG) -o $(NAME) $(INCLUDE) $(LIB) $(SRCS) $(FRAMEWORK)
 
 .PHONY: clean fclean re lclean
 

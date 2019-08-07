@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 19:26:54 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/05 16:54:37 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/07 18:04:00 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_data(t_mlx *mlx)
 	mlx_destroy_image(mlx->ptr, mlx->img_ptr);
 }
 
-void	memdel_size(t_list **list)
+void	free_list(t_list **list)
 {
 	t_list			*current;
 	t_list			*next;
@@ -31,10 +31,8 @@ void	memdel_size(t_list **list)
 	while (current)
 	{
 		next = current->next;
-		printf("current : %p\t", current);
-		printf("current->next : %p\t", current->next);
-		printf("current->content : %p\t", current->content);
-		printf("str : %s\n", current->content);
+		ft_strdel((char**)&(current->content));
+		ft_memdel((void**)&(current));
 		current = next;
 	}
 }

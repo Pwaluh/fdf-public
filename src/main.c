@@ -6,13 +6,31 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:30 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/05 16:52:03 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/07 18:39:34 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "keycode.h"
 #include <stdio.h>
+
+int		biggest_line(t_list *list)
+{
+	int		biggest;
+	t_list		*beg;
+
+	biggest = 0;
+	beg = list;
+	while (list)
+	{
+		if ((int)list->content_size > biggest)
+			biggest = list->content_size;
+		list = list->next;
+	}
+	list = beg;
+	return (biggest);
+}
+
 
 t_mlx			*init_mlx(void)
 {
@@ -87,9 +105,9 @@ int				main(int argc, char **argv)
 	mlx->padding = (double)(IMG_WIDTH / 2) / mlx->map->line_size;
 	mlx->offset.x = (IMG_WIDTH / 2) - (((mlx->padding * mlx->map->line_size) / 2) - ((mlx->padding * mlx->map->line_nb) / 2))  * cos(0.523599);
 	mlx->offset.y = (IMG_HEIGHT / 2) - (((mlx->padding * mlx->map->line_size) / 2) + ((mlx->padding * mlx->map->line_nb) / 2)) * sin(0.523599);
-	//render(mlx);
+	render(mlx);
 	mlx_hook(mlx->win, KP, KPMASK, &key_hook, mlx);
-	//mlx_loop_hook(mlx->ptr, loop, mlx);
+	mlx_loop_hook(mlx->ptr, loop, mlx);
 	mlx_loop(mlx->ptr);
 	return (0);
 }
