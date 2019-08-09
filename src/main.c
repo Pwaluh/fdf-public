@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:30 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/07 18:39:34 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/09 10:12:00 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_mlx			*init_mlx(void)
 	mlx->fun = 0;
 	mlx->new_img = 1;
 	mlx->lines = 2;
+	mlx->data_line = (t_bresenham*)ft_memalloc(sizeof(t_bresenham));
 	return (mlx);
 }
 

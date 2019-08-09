@@ -6,14 +6,14 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 10:54:06 by judrion           #+#    #+#             */
-/*   Updated: 2019/06/04 18:20:42 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/09 14:45:43 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFF_SIZE		2048
+# define BUFF_SIZE		4096
 # include <limits.h>
 # include <fcntl.h>
 # include "libft.h"

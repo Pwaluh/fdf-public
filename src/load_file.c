@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 15:58:16 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/07 18:40:05 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/09 10:29:53 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_file			*load_file(const char *filepath)
 	file->line_nb = 0;
 	full_size = 0;
 	file_line = read_file(filepath, file);
+	ft_reverse_list(&file_line);
 	setup_lines(file_line);
 	file->line_size = biggest_line(file_line);
 	file->data = (int*)ft_memalloc(sizeof(int) * (file->line_size * file->line_nb));

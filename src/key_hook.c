@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 18:10:28 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/07 17:59:56 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/09 15:32:21 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ int				key_hook(int keycode, t_mlx *mlx)
 		mlx->img_array = (int*)mlx_get_data_addr(mlx->img_ptr, \
 				 &mlx->img.bpp, &mlx->img.size_line, &mlx->img.endian);
 		mlx->lines = mlx->lines == 2 ? 3 : 2;
+		render(mlx);
+	}
+	else if (keycode == 0)
+	{
+		mlx->lines = 0;
 		render(mlx);
 	}
 	else

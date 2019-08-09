@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/07 18:01:51 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/09 10:13:48 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,15 @@ typedef struct				s_img
 	int						endian;
 }							t_img;
 
+typedef struct				s_bresenham
+{
+	int						delta_x;
+	int						delta_y;
+	int						error;
+	int						ystep;
+	int						steep;
+}							t_bresenham;
+
 typedef struct				s_mlx
 {
 	void					*ptr;
@@ -82,21 +91,13 @@ typedef struct				s_mlx
 	t_file					*map;
 	t_img					img;
 	t_vector3d				offset;
+	t_bresenham				*data_line;
 	double					padding;
 	int						view;
 	int						fun;
 	int						new_img;
 	int						lines;
 }							t_mlx;
-
-typedef struct				s_bresenham
-{
-	int						delta_x;
-	int						delta_y;
-	int						error;
-	int						ystep;
-	int						steep;
-}							t_bresenham;
 
 typedef struct				s_xiaolin_wu
 {
