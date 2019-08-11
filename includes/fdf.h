@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/09 10:13:48 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/10 15:40:42 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,8 @@ void				parallel_view(t_vector3d *coord);
 void				line(int x0, int y0, int x1, int y1, t_mlx *mlx);
 
 void				memdel_size(t_list **list);
-void		print_list(t_list *list);
-int		biggest_line(t_list *list);
-int			setup_lines(t_list *file_lines);
+void				print_list(t_list *list);
+int					biggest_line(t_list *list);
+int					setup_lines(t_list *file_lines);
+void				create_image(t_mlx *mlx);
 #endif
