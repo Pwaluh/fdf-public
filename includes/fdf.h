@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/12 16:48:37 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/12 17:27:59 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@
 # include <math.h>
 # include <errno.h>
 # include <fcntl.h>
-
-# define					IMG_WIDTH	2880
-# define					IMG_HEIGHT	1440
-# define					ONE_KEYNUM	83
-# define					TWO_KEYNUM	84
-# define					ISO			0
-# define					PARA		1
+# define MG_WIDTH			2880
+# define IMG_HEIGHT			1440
+# define ONE_KEYNUM			83
+# define TWO_KEYNUM			84
+# define ISO				0
+# define PARA				1
 
 typedef enum				e_error
 {
@@ -108,34 +107,30 @@ typedef struct				s_xiaolin_wu
 	float					y;
 }							t_xiaolin_wu;
 
+t_list						*read_file(const char *filepath, t_file *file);
+void						parser(t_list *list, int *data);
+void						isometric_offset(t_mlx *mlx);
+void						parallel_offset(t_mlx *mlx);
+int							key_hook(int keycode, t_mlx *mlx);
+void						free_data(t_mlx *mlx);
+void						free_list(t_list **list);
+void						throw_error(int error_code);
+t_file						*load_file(const char *file);
+void						render(t_mlx *mlx);
+void						draw_lines(t_vector3d *p, t_mlx *mlx);
+void						bresenham_line(t_vector3d p0, t_vector3d p1, \
+											t_mlx *mlx);
+void						put_pixel(t_mlx *mlx, int x, int y, int color);
+void						scale_z(t_mlx *mlx);
+int							brightness(int color, float b);
+void						isometric_view(t_vector3d *p, t_mlx *mlx);
+void						parallel_view(t_vector3d *coord, t_mlx *mlx);
+void						line(int x0, int y0, int x1, int y1, t_mlx *mlx);
+void						memdel_size(t_list **list);
+void						print_list(t_list *list);
+int							biggest_line(t_list *list);
+int							setup_lines(t_list *file_lines);
+void						create_image(t_mlx *mlx);
+int							key_hook_2(int keycode, t_mlx *mlx);
 
-t_list				*read_file(const char *filepath, t_file *file);
-void				parser(t_list *list, int *data);
-void				isometric_offset(t_mlx *mlx);
-void				parallel_offset(t_mlx *mlx);
-
-int					key_hook(int keycode, t_mlx *mlx);
-void				free_data(t_mlx *mlx);
-void				free_list(t_list **list);
-void				throw_error(int error_code);
-t_file				*load_file(const char *file);
-void				render(t_mlx *mlx);
-void				draw_lines(t_vector3d *p, t_mlx *mlx);
-void				bresenham_line(t_vector3d p0, t_vector3d p1, t_mlx *mlx);
-//void				put_pixel(t_mlx *mlx, t_vector2d coord, float b, int c);
-void				put_pixel(t_mlx *mlx, int x, int y, int color);
-void				scale_z(t_mlx *mlx);
-
-int					brightness(int color, float b);
-void				xiaoline_wu_line(t_vector2d a, t_vector2d b, t_mlx *mlx);
-void				isometric_view(t_vector3d *p, t_mlx *mlx);
-void				parallel_view(t_vector3d *coord, t_mlx *mlx);
-void				line(int x0, int y0, int x1, int y1, t_mlx *mlx);
-
-void				memdel_size(t_list **list);
-void				print_list(t_list *list);
-int					biggest_line(t_list *list);
-int					setup_lines(t_list *file_lines);
-void				create_image(t_mlx *mlx);
-int				key_hook_2(int keycode, t_mlx *mlx);
 #endif
