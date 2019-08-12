@@ -6,19 +6,17 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 15:58:16 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/09 10:29:53 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/12 16:39:02 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
-
 
 t_file			*load_file(const char *filepath)
 {
 	t_file		*file;
 	t_list		*file_line;
-	int		full_size;
+	int			full_size;
 
 	if ((file = (t_file*)ft_memalloc(sizeof(t_file))) == NULL)
 		throw_error(FILE_INIT_FAILED);
@@ -28,7 +26,8 @@ t_file			*load_file(const char *filepath)
 	ft_reverse_list(&file_line);
 	setup_lines(file_line);
 	file->line_size = biggest_line(file_line);
-	file->data = (int*)ft_memalloc(sizeof(int) * (file->line_size * file->line_nb));
+	file->data = (int*)ft_memalloc(sizeof(int) \
+			* (file->line_size * file->line_nb));
 	if (file->data)
 		parser(file_line, file->data);
 	free_list(&file_line);
@@ -56,20 +55,4 @@ t_list			*read_file(const char *filepath, t_file *file)
 		file->line_nb = file->line_nb + 1;
 	}
 	return (full_file);
-}
-
-void		print_list(t_list *list)
-{
-	int		i = 0;
-	t_list *tmp;
-
-	tmp = list;
-	ft_putendl("========================================================================================================");
-	while (tmp)
-	{
-		printf("%i\t(%zu)\t%p\t%s\n", i, tmp->content_size, tmp->content, (char*)tmp->content);
-		i = i + 1;
-		tmp = tmp->next;
-	}
-	ft_putendl("========================================================================================================");
 }

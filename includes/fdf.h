@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/11 17:32:02 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/12 16:48:37 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct				s_mlx
 	t_file					*map;
 	t_img					img;
 	t_vector3d				offset;
-	t_bresenham				*data_line;
+	t_bresenham				*line;
 	double					padding;
 	int						view;
 	int						fun;
@@ -111,6 +111,8 @@ typedef struct				s_xiaolin_wu
 
 t_list				*read_file(const char *filepath, t_file *file);
 void				parser(t_list *list, int *data);
+void				isometric_offset(t_mlx *mlx);
+void				parallel_offset(t_mlx *mlx);
 
 int					key_hook(int keycode, t_mlx *mlx);
 void				free_data(t_mlx *mlx);

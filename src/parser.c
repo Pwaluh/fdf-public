@@ -6,25 +6,21 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 12:40:03 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/07 18:40:11 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/12 16:41:44 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-/*
- *	TODO: think about a better parser;
- */
-
-int			setup_lines(t_list *file_lines)
+int				setup_lines(t_list *file_lines)
 {
 	t_list		*beg;
 	char		*new_number;
-	int		i;
+	int			i;
 
 	beg = file_lines;
-	while(beg)
+	while (beg)
 	{
 		i = 0;
 		while (*(char*)(beg->content + i))
@@ -35,7 +31,7 @@ int			setup_lines(t_list *file_lines)
 				*new_number = '\0';
 				beg->content_size = beg->content_size + 1;
 				i = i + (new_number - (char*)(beg->content + i)) + 1;
-			} 
+			}
 			else
 				i = i + 1;
 		}
@@ -53,7 +49,7 @@ void			parser(t_list *list, int *data)
 
 	beg = list;
 	i = 0;
-		*(data + i) = 0;
+	*(data + i) = 0;
 	while (beg)
 	{
 		j = 0;

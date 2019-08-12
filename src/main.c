@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:30 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/09 10:12:00 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/12 16:45:01 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "keycode.h"
 #include <stdio.h>
 
-int		biggest_line(t_list *list)
+int				biggest_line(t_list *list)
 {
-	int		biggest;
+	int			biggest;
 	t_list		*beg;
 
 	biggest = 0;
@@ -30,7 +30,6 @@ int		biggest_line(t_list *list)
 	list = beg;
 	return (biggest);
 }
-
 
 t_mlx			*init_mlx(void)
 {
@@ -46,20 +45,20 @@ t_mlx			*init_mlx(void)
 	mlx->img.endian = 0;
 	mlx->img_ptr = mlx_new_image(mlx->ptr, IMG_WIDTH, IMG_HEIGHT);
 	mlx->img_array = (int*)mlx_get_data_addr(mlx->img_ptr, \
-				 &mlx->img.bpp, &mlx->img.size_line, &mlx->img.endian);
+					&mlx->img.bpp, &mlx->img.size_line, &mlx->img.endian);
 	mlx->view = ISO;
 	mlx->fun = 0;
 	mlx->new_img = 1;
 	mlx->lines = 2;
-	mlx->data_line = (t_bresenham*)ft_memalloc(sizeof(t_bresenham));
+	mlx->line = (t_bresenham*)ft_memalloc(sizeof(t_bresenham));
 	return (mlx);
 }
 
 void			scale_z(t_mlx *mlx)
 {
-	int				i;
-	int				min;
-	int				max;
+	int			i;
+	int			min;
+	int			max;
 
 	i = 0;
 	min = 0;
@@ -104,8 +103,7 @@ int				main(int argc, char **argv)
 	if ((mlx->map = load_file(argv[1])) == NULL)
 		throw_error(MAP_ERROR);
 	mlx->padding = (double)(IMG_WIDTH / 2) / mlx->map->line_size;
-	mlx->offset.x = (IMG_WIDTH / 2) - (((mlx->padding * mlx->map->line_size) / 2) - ((mlx->padding * mlx->map->line_nb) / 2))  * cos(0.523599);
-	mlx->offset.y = (IMG_HEIGHT / 2) - (((mlx->padding * mlx->map->line_size) / 2) + ((mlx->padding * mlx->map->line_nb) / 2)) * sin(0.523599);
+	isometric_offset(mlx);
 	render(mlx);
 	mlx_hook(mlx->win, KP, KPMASK, &key_hook, mlx);
 	mlx_loop_hook(mlx->ptr, loop, mlx);
