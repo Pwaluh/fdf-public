@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/12 17:27:59 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/12 17:29:02 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <math.h>
 # include <errno.h>
 # include <fcntl.h>
-# define MG_WIDTH			2880
+# define IMG_WIDTH			2880
 # define IMG_HEIGHT			1440
 # define ONE_KEYNUM			83
 # define TWO_KEYNUM			84
