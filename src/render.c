@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 15:32:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/12 17:23:25 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/12 17:48:08 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static t_vector3d	*init_points(t_file *map, int i)
 
 	p = (t_vector3d*)ft_memalloc(sizeof(t_vector3d) * 3);
 	if (p == NULL)
-		throw_error(INIT_POINTS);
+		throw_error(INIT_POINTS, NULL);
 	p[0].x = i % map->line_size;
 	p[0].y = (i / map->line_size);
 	p[0].z = map->data[i];

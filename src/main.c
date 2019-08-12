@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:30 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/12 16:45:01 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/12 17:47:04 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_mlx			*init_mlx(void)
 
 	mlx = (t_mlx*)ft_memalloc(sizeof(t_mlx));
 	if (mlx == NULL)
-		throw_error(MLX_INIT_FAILED);
+		throw_error(MLX_INIT_FAILED, mlx);
 	mlx->ptr = mlx_init();
 	mlx->win = mlx_new_window(mlx->ptr, IMG_WIDTH, IMG_HEIGHT, "fdf");
 	mlx->img.bpp = 32;
@@ -96,12 +96,13 @@ int				main(int argc, char **argv)
 {
 	t_mlx		*mlx;
 
+	mlx = NULL;
 	if (argc != 2)
-		throw_error(USAGE);
+		throw_error(USAGE, mlx);
 	if ((mlx = init_mlx()) == NULL)
-		throw_error(MLX_ERROR);
-	if ((mlx->map = load_file(argv[1])) == NULL)
-		throw_error(MAP_ERROR);
+		throw_error(MLX_ERROR, mlx);
+	if ((mlx->map = load_file(argv[1], mlx)) == NULL)
+		throw_error(MAP_ERROR, mlx);
 	mlx->padding = (double)(IMG_WIDTH / 2) / mlx->map->line_size;
 	isometric_offset(mlx);
 	render(mlx);

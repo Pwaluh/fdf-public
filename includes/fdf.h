@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/12 17:29:02 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/12 17:46:01 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ typedef enum				e_error
 	INIT_POINTS,
 	INIT_DATA_FAILED,
 	SPLITTED_DATA_FAILED,
-	OPEN_FAIL
+	OPEN_FAIL,
+	FILE_ERROR
 }							t_error;
 
 typedef struct				s_vector2d
@@ -107,15 +108,15 @@ typedef struct				s_xiaolin_wu
 	float					y;
 }							t_xiaolin_wu;
 
-t_list						*read_file(const char *filepath, t_file *file);
+t_list						*read_file(const char *filepath, t_file *file, t_mlx *mlx);
 void						parser(t_list *list, int *data);
 void						isometric_offset(t_mlx *mlx);
 void						parallel_offset(t_mlx *mlx);
 int							key_hook(int keycode, t_mlx *mlx);
 void						free_data(t_mlx *mlx);
 void						free_list(t_list **list);
-void						throw_error(int error_code);
-t_file						*load_file(const char *file);
+void						throw_error(int error_code, t_mlx *mlx);
+t_file						*load_file(const char *file, t_mlx *mlx);
 void						render(t_mlx *mlx);
 void						draw_lines(t_vector3d *p, t_mlx *mlx);
 void						bresenham_line(t_vector3d p0, t_vector3d p1, \
