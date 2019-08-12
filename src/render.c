@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 15:32:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/09 10:54:48 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/11 17:44:46 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void				draw_lines(t_vector3d *p, t_mlx *mlx)
 {
 	if (mlx->lines == 2 || mlx->lines == 3)
 	{
-		if (p[0].x > 0 && p[1].x < IMG_WIDTH)
+		if ((p[1].x < IMG_WIDTH && p[1].x > 0) || \
+			(p[0].x < IMG_WIDTH && p[0].x > 0))
 			bresenham_line(p[0], p[1], mlx);
-		if (p[0].y > 0 && p[1].y < IMG_HEIGHT)
+		if ((p[2].x < IMG_WIDTH && p[2].x > 0) || \
+			(p[0].x < IMG_WIDTH && p[0].x > 0))
 			bresenham_line(p[0], p[2], mlx);
 		//line(p[0].x, p[0].y, p[1].x, p[1].y, mlx);
 		//line(p[0].x, p[0].y, p[2].x, p[2].y, mlx);
@@ -86,7 +88,7 @@ void				render(t_mlx *mlx)
 		p = init_points(mlx->map, i);
 		apply_padding(p, mlx);
 		if (mlx->view == PARA)
-			parallel_view(p);
+			parallel_view(p, mlx);
 		else
 			isometric_view(p, mlx);
 		draw_lines(p, mlx);

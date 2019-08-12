@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/10 15:40:42 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/11 17:32:02 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void				scale_z(t_mlx *mlx);
 int					brightness(int color, float b);
 void				xiaoline_wu_line(t_vector2d a, t_vector2d b, t_mlx *mlx);
 void				isometric_view(t_vector3d *p, t_mlx *mlx);
-void				parallel_view(t_vector3d *coord);
+void				parallel_view(t_vector3d *coord, t_mlx *mlx);
 void				line(int x0, int y0, int x1, int y1, t_mlx *mlx);
 
 void				memdel_size(t_list **list);
@@ -135,4 +135,5 @@ void				print_list(t_list *list);
 int					biggest_line(t_list *list);
 int					setup_lines(t_list *file_lines);
 void				create_image(t_mlx *mlx);
+int				key_hook_2(int keycode, t_mlx *mlx);
 #endif
