@@ -6,13 +6,12 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 19:26:54 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/15 15:12:07 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/15 15:34:30 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "keycode.h"
-#include <stdio.h>
 
 void	free_data(t_mlx *mlx)
 {

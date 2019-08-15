@@ -6,12 +6,11 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 15:32:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/15 15:22:39 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/15 15:34:53 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 void				draw_lines(t_vector3d *p, t_mlx *mlx)
 {

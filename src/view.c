@@ -6,12 +6,11 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 17:25:29 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/11 17:32:07 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/15 15:35:34 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 void			parallel_view(t_vector3d *coord, t_mlx *mlx)
 {

@@ -6,13 +6,12 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 18:10:28 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/12 17:22:56 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/15 15:34:34 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "keycode.h"
-#include <stdio.h>
 
 void				isometric_offset(t_mlx *mlx)
 {

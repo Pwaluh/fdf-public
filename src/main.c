@@ -6,13 +6,12 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:30 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/12 17:47:04 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/15 15:34:41 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "keycode.h"
-#include <stdio.h>
 
 int				biggest_line(t_list *list)
 {
