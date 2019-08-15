@@ -6,12 +6,12 @@
 #    By: judrion <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/20 16:15:36 by judrion           #+#    #+#              #
-#    Updated: 2019/08/12 16:45:55 by judrion          ###   ########.fr        #
+#    Updated: 2019/08/15 16:52:17 by judrion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
-SRC = brezenham color error free_data key_hook load_file main mouse_hook \
+SRC = brezenham color error free_data key_hook load_file main \
 	  render get_next_line view parser create_img
 SRCS = $(addprefix src/, $(addsuffix .c, $(SRC)))
 OBJ = $(SRCS:.c=.o)
