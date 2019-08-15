@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:59:58 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/12 17:55:08 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/15 15:18:35 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void				throw_error(int error_code, t_mlx *mlx)
 		ft_putendl("Error: can't open file.");
 	free_data(mlx);
 	mlx_destroy_window(mlx->ptr, mlx->win);
-	ft_memdel((void**)&mlx);
+	ft_memdel((void**)mlx);
 	exit(error_code);
 }

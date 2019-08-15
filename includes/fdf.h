@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:56:57 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/12 17:46:01 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/15 15:23:56 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ typedef struct				s_xiaolin_wu
 	float					y;
 }							t_xiaolin_wu;
 
-t_list						*read_file(const char *filepath, t_file *file, t_mlx *mlx);
+t_list						*read_file(const char *filepath, \
+										t_file *file, t_mlx *mlx);
 void						parser(t_list *list, int *data);
 void						isometric_offset(t_mlx *mlx);
 void						parallel_offset(t_mlx *mlx);

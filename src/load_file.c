@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 15:58:16 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/12 17:51:53 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/15 15:21:21 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ t_list			*read_file(const char *filepath, t_file *file, t_mlx *mlx)
 
 	full_file = NULL;
 	str = NULL;
-	fd = open(filepath, O_RDONLY);
-	if (fd < 0)
+	if ((fd = open(filepath, O_RDONLY)) == 0)
 		throw_error(OPEN_FAIL, mlx);
 	while ((gnl = get_next_line(fd, &str)) > 0)
 	{
@@ -56,7 +55,7 @@ t_list			*read_file(const char *filepath, t_file *file, t_mlx *mlx)
 		file->line_nb = file->line_nb + 1;
 	}
 	close(fd);
-	if (gnl == 0)
+	if (gnl == -1)
 	{
 		free_list(&full_file);
 		throw_error(FILE_ERROR, mlx);
