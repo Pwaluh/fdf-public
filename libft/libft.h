@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 17:29:12 by judrion           #+#    #+#             */
-/*   Updated: 2019/08/21 15:44:11 by judrion          ###   ########.fr       */
+/*   Updated: 2019/08/28 18:13:45 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,48 +20,6 @@
 # include <time.h>
 # define MAX_ULLONG		9223372036854775807
 # define MIN_INT		-2147483648
-
-typedef struct				s_sem
-{
-	pthread_mutex_t			mutex;
-	pthread_cond_t			cond;
-	int						v;
-}							t_sem;
-
-typedef struct				s_job
-{
-	struct s_job			*prev;
-	void					(*function)(void *arg);
-	void					*arg;
-}							t_job;
-
-typedef struct				s_jobqueue
-{
-	pthread_mutex_t			rw_mutex;
-	t_job					*front;
-	t_job					*rear;
-	t_sem					*has_jobs;
-	int						len;
-}							t_jobqueue;
-
-typedef struct				s_thread
-{
-	int						id;
-	pthread_t				pthread;
-	struct s_thread_pool	*pool;
-}							t_thread;
-
-typedef struct				s_thread_pool
-{
-	struct s_thread			**threads;
-	volatile int			alive_threads;
-	volatile int			working_threads;
-	pthread_mutex_t			th_count_lock;
-	pthread_cond_t			th_all_idle;
-	struct s_jobqueue		jobqueue;
-	int						threads_keepalive;
-}							t_thread_pool;
-
 
 typedef struct				s_list
 {
@@ -137,25 +95,6 @@ void						ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void						ft_lstadd(t_list **alst, t_list *new);
 void						ft_lstiter(t_list *lst, void(*f)(t_list *elem));
 t_list						*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-t_thread_pool				*init_pool(int n);
-int							add_work(t_thread_pool *pool, \
-									void (*func)(void*), void *argument);
-void						destroy_pool(t_thread_pool *pool);
-void						init_semaphore(t_sem *semaphore, int value);
-void						reset_semaphore(t_sem *semaphore);
-void						post_semaphore(t_sem *semaphore);
-void						post_all_semaphore(t_sem *semaphore);
-void						wait_semaphore(t_sem *semaphore);
-int							init_thread(t_thread_pool *pool, \
-										t_thread **threads, int id);
-void						*thread_do(t_thread *thread);
-void						thread_hold(int sig_id);
-void						thread_destroy(t_thread *thread);
-void						timeout(t_thread_pool *pool);
-int							init_jobqueue(t_jobqueue *jobqueue);
-void						push_jobqueue(t_jobqueue *jobqueue, t_job *newjob);
-t_job						*pull_jobqueue(t_jobqueue *jobqueue);
-void						clear_jobqueue(t_jobqueue *jobqueue);
-void						destroy_jobqueue(t_jobqueue *jobqueue);
-
+void						memswap(void *a, void *b, size_t size);
+void						ft_reverse_list(t_list **list);
 #endif
