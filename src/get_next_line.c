@@ -6,7 +6,7 @@
 /*   By: judrion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 10:58:14 by judrion           #+#    #+#             */
-/*   Updated: 2018/12/10 17:56:37 by judrion          ###   ########.fr       */
+/*   Updated: 2019/09/20 13:38:48 by judrion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int				get_next_line(const int fd, char **line)
 		{
 			if (ft_strcmp(file[fd], "\0") != 0)
 				return (ft_extract_line(&file[fd], line, NULL, 0));
+			ft_strdel(&file[fd]);
 			return (0);
 		}
 		else if (ret_read == -1)
