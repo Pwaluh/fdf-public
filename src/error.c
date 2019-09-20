@@ -12,13 +12,8 @@
 
 #include "fdf.h"
 
-void				throw_error(int error_code, t_mlx *mlx)
+static void			print_error(int error_code)
 {
-	if (error_code == USAGE)
-	{
-		ft_putendl("Usage: ./fdf [file]");
-		exit(error_code);
-	}
 	if (error_code == MLX_ERROR)
 		ft_putendl("Error: can't initialise minilibX");
 	if (error_code == MAP_ERROR)
@@ -31,6 +26,24 @@ void				throw_error(int error_code, t_mlx *mlx)
 		ft_putendl("Error: not a valid file.");
 	if (error_code == OPEN_FAIL)
 		ft_putendl("Error: can't open file.");
+	if (error_code == IMAGE_ALLOC_FAILED)
+		ft_putendl("Can't allocate memory for the image.");
+}
+
+void				throw_error(int error_code, t_mlx *mlx)
+{
+	if (error_code == USAGE)
+	{
+		ft_putendl("Usage: ./fdf [file]");
+		exit(error_code);
+	}
+	else if (error_code == WINDOW_ALLOC_FAILED)
+	{
+		ft_memdel((void**)&mlx);
+		exit(error_code);
+	}
+	else
+		print_error(error_code);
 	free_data(mlx);
 	mlx_destroy_window(mlx->ptr, mlx->win);
 	ft_memdel((void**)mlx);

@@ -32,13 +32,8 @@ void				draw_lines(t_vector3d *p, t_mlx *mlx)
 	}
 }
 
-static t_vector3d	*init_points(t_file *map, int i)
+static void			init_points(t_file *map, int i, t_vector3d *p)
 {
-	t_vector3d		*p;
-
-	p = (t_vector3d*)ft_memalloc(sizeof(t_vector3d) * 3);
-	if (p == NULL)
-		throw_error(INIT_POINTS, NULL);
 	p[0].x = i % map->line_size;
 	p[0].y = (i / map->line_size);
 	p[0].z = map->data[i];
@@ -58,7 +53,6 @@ static t_vector3d	*init_points(t_file *map, int i)
 	}
 	else
 		p[2] = p[0];
-	return (p);
 }
 
 static void			apply_padding(t_vector3d *p, t_mlx *mlx)
@@ -76,19 +70,22 @@ void				render(t_mlx *mlx)
 	int				i;
 	t_vector3d		*p;
 
+	p = (t_vector3d*)ft_memalloc(sizeof(t_vector3d) * 3);
+	if (p == NULL)
+		throw_error(INIT_POINTS, NULL);
 	i = 0;
 	scale_z(mlx);
 	while (i < (mlx->map->line_size * mlx->map->line_nb))
 	{
-		p = init_points(mlx->map, i);
+		init_points(mlx->map, i, p);
 		apply_padding(p, mlx);
 		if (mlx->view == PARA)
 			parallel_view(p, mlx);
 		else
 			isometric_view(p, mlx);
 		draw_lines(p, mlx);
-		ft_memdel((void**)&p);
 		i = i + 1;
 	}
+	ft_memdel((void**)&p);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img_ptr, 0, 0);
 }

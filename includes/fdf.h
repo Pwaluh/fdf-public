@@ -19,6 +19,7 @@
 # include <math.h>
 # include <errno.h>
 # include <fcntl.h>
+# include <stdio.h>
 # define IMG_WIDTH			2880
 # define IMG_HEIGHT			1440
 # define ONE_KEYNUM			83
@@ -38,7 +39,9 @@ typedef enum				e_error
 	INIT_DATA_FAILED,
 	SPLITTED_DATA_FAILED,
 	OPEN_FAIL,
-	FILE_ERROR
+	FILE_ERROR,
+	IMAGE_ALLOC_FAILED,
+	WINDOW_ALLOC_FAILED
 }							t_error;
 
 typedef struct				s_vector2d

@@ -34,12 +34,24 @@ t_file			*load_file(const char *filepath, t_mlx *mlx)
 	return (file);
 }
 
+static int		setup_new_elem(char *str, t_list **full_file)
+{
+	t_list		*new_elem;
+
+	new_elem = ft_lstnew(NULL, 0);
+	if (new_elem == NULL)
+		return (-1);
+	new_elem->content = (void*)str;
+	new_elem->content_size = 1;
+	ft_lstadd(full_file, new_elem);
+	return (0);
+}
+
 t_list			*read_file(const char *filepath, t_file *file, t_mlx *mlx)
 {
 	int			fd;
 	char		*str;
 	t_list		*full_file;
-	t_list		*new_elem;
 	int			gnl;
 
 	full_file = NULL;
@@ -48,10 +60,11 @@ t_list			*read_file(const char *filepath, t_file *file, t_mlx *mlx)
 		throw_error(OPEN_FAIL, mlx);
 	while ((gnl = get_next_line(fd, &str)) > 0)
 	{
-		new_elem = ft_lstnew(NULL, 0);
-		new_elem->content = (void*)str;
-		new_elem->content_size = 1;
-		ft_lstadd(&full_file, new_elem);
+		if (setup_new_elem(str, &full_file) == -1)
+		{
+			gnl = -1;
+			break ;
+		}
 		file->line_nb = file->line_nb + 1;
 	}
 	close(fd);

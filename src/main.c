@@ -39,10 +39,14 @@ t_mlx			*init_mlx(void)
 		throw_error(MLX_INIT_FAILED, mlx);
 	mlx->ptr = mlx_init();
 	mlx->win = mlx_new_window(mlx->ptr, IMG_WIDTH, IMG_HEIGHT, "fdf");
+	if (mlx->win == NULL)
+		throw_error(WINDOW_ALLOC_FAILED, mlx);
 	mlx->img.bpp = 32;
 	mlx->img.size_line = IMG_WIDTH;
 	mlx->img.endian = 0;
 	mlx->img_ptr = mlx_new_image(mlx->ptr, IMG_WIDTH, IMG_HEIGHT);
+	if (mlx->img_ptr == NULL)
+		throw_error(IMAGE_ALLOC_FAILED, mlx);
 	mlx->img_array = (int*)mlx_get_data_addr(mlx->img_ptr, \
 					&mlx->img.bpp, &mlx->img.size_line, &mlx->img.endian);
 	mlx->view = ISO;
